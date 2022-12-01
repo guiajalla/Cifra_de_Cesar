@@ -17,11 +17,29 @@ def cifra(texto, chave, modo): #Desenvolvimento da Cifra de Cesar
 
 def verificaArquivo(): #Verifica se há um arquivo com esse nome, caso não tenha ele cria
     try:
-        f = open('arquivo_criptografado.txt', 'a')
+        f = open('arquivo_criptografado.txt')
         f.close()
+        return True
     except:
-        print('Erro ao abrir arquivo!')
+        return False
     
+def getInfo():
+    print('entrou')
+
+def setInfo():
+    info = []
+    f = open('arquivo_criptografado.txt', 'w')
+    texto = input('\nDigite o que deseja criptografar: \n')
+    chave = int(input('\nDigite o número da chave para criptografar(1~26): \n'))
+
+    txt_cifrado = cifra(texto, chave, MODO_CRIPTOGRAF)
+    info.append(txt_cifrado)
+    info.append(chave)
+
+    for conteudo in info:
+        f.write(str(conteudo) + ';')
+    f.close()
+
 def interface():
     print('----- Escolha o que deseja fazer -----')
     print('1 - Criptografar')
@@ -30,22 +48,19 @@ def interface():
     op = input('Opcao: ')
     match op:
         case '1':
-            print('você escolheu criptografar')
+            setInfo()
         case '2':
-            print('Você escolheu descriptografar')
+            if verificaArquivo() ==  False:
+                print('Você não possui um arquivo para descriptografar!\n')
+                return interface()
+            else:
+                print('Descriptografando arquivo')
+                getInfo()
+            
 
 
 def main():
     interface()
-    # Tests
-    # chave = 24
-    # original = 'A ligeira raposa marrom saltou sobre o cachorro cansado'
-    # print('  Original:', original)
-    # ciphered = cifra(original, chave, MODO_CRIPTOGRAF)
-    # print('Encriptada:', ciphered)
-    # plain = cifra(ciphered, chave, MODO_DESCRIPTOGRAF)
-    # print('Decriptada:', plain)
-    #verificaArquivo()
 
 if __name__ == "__main__":
     main()
