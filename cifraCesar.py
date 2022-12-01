@@ -1,5 +1,5 @@
 import sys
-
+##Definições dos modos e da chave para (des)criptografar.
 MODO_CRIPTOGRAF = 1
 MODO_DESCRIPTOGRAF = 0
 CHAVE = 12
@@ -7,8 +7,8 @@ CHAVE = 12
 def cifra(texto, chave, modo): #Desenvolvimento da Cifra de Cesar
     alfabeto= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     new_txt = ''
-    for c in texto: #Passa por cada caracter dentro do texto
-        index = alfabeto.find(c) #Procura a posição desse caracter dentro da string alfabeto
+    for c in texto: #Passa por cada caracter dentro do texto e fazer o processo da Cifra
+        index = alfabeto.find(c) #Procura a posição desse caracter dentro da string "alfabeto"
         if index == -1:
             new_txt += c
         else:
